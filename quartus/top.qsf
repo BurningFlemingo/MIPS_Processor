@@ -1,0 +1,141 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2025  Altera Corporation. All rights reserved.
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and any partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, the Altera Quartus Prime License Agreement,
+# the Altera IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Altera and sold by Altera or its authorized distributors.  Please
+# refer to the Altera Software License Subscription Agreements 
+# on the Quartus Prime software download page.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 25.1std.0 Build 1129 10/21/2025 SC Standard Edition
+# Date created = 23:56:02  February 12, 2026
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		top_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Intel recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "MAX 10"
+set_global_assignment -name DEVICE 10M50DAF484I6G
+set_global_assignment -name TOP_LEVEL_ENTITY top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 25.1STD.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "23:56:02  FEBRUARY 12, 2026"
+set_global_assignment -name LAST_QUARTUS_VERSION "25.1std.0 Standard Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP "-40"
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
+set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 484
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 6
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
+set_global_assignment -name EDA_SIMULATION_TOOL "Questa Altera FPGA (Verilog)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_timing
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_location_assignment PIN_C14 -to o_hex[0]
+set_location_assignment PIN_E15 -to o_hex[1]
+set_location_assignment PIN_C15 -to o_hex[2]
+set_location_assignment PIN_C16 -to o_hex[3]
+set_location_assignment PIN_E16 -to o_hex[4]
+set_location_assignment PIN_D17 -to o_hex[5]
+set_location_assignment PIN_C17 -to o_hex[6]
+set_location_assignment PIN_C18 -to o_hex[7]
+set_location_assignment PIN_D18 -to o_hex[8]
+set_location_assignment PIN_E18 -to o_hex[9]
+set_location_assignment PIN_B16 -to o_hex[10]
+set_location_assignment PIN_A17 -to o_hex[11]
+set_location_assignment PIN_A18 -to o_hex[12]
+set_location_assignment PIN_B17 -to o_hex[13]
+set_location_assignment PIN_C11 -to i_switches[1]
+set_location_assignment PIN_D12 -to i_switches[2]
+set_location_assignment PIN_C12 -to i_switches[3]
+set_location_assignment PIN_A12 -to i_switches[4]
+set_location_assignment PIN_B12 -to i_switches[5]
+set_location_assignment PIN_A13 -to i_switches[6]
+set_location_assignment PIN_A14 -to i_switches[7]
+set_location_assignment PIN_B20 -to o_hex[14]
+set_location_assignment PIN_A20 -to o_hex[15]
+set_location_assignment PIN_B19 -to o_hex[16]
+set_location_assignment PIN_A21 -to o_hex[17]
+set_location_assignment PIN_B21 -to o_hex[18]
+set_location_assignment PIN_C22 -to o_hex[19]
+set_location_assignment PIN_B22 -to o_hex[20]
+set_location_assignment PIN_F21 -to o_hex[21]
+set_location_assignment PIN_E22 -to o_hex[22]
+set_location_assignment PIN_E21 -to o_hex[23]
+set_location_assignment PIN_C19 -to o_hex[24]
+set_location_assignment PIN_C20 -to o_hex[25]
+set_location_assignment PIN_D19 -to o_hex[26]
+set_location_assignment PIN_E17 -to o_hex[27]
+set_location_assignment PIN_F18 -to o_hex[28]
+set_location_assignment PIN_E20 -to o_hex[29]
+set_location_assignment PIN_E19 -to o_hex[30]
+set_location_assignment PIN_J18 -to o_hex[31]
+set_location_assignment PIN_H19 -to o_hex[32]
+set_location_assignment PIN_F20 -to o_hex[34]
+set_location_assignment PIN_F19 -to o_hex[33]
+set_location_assignment PIN_J20 -to o_hex[35]
+set_location_assignment PIN_K20 -to o_hex[36]
+set_location_assignment PIN_L18 -to o_hex[37]
+set_location_assignment PIN_N18 -to o_hex[38]
+set_location_assignment PIN_M20 -to o_hex[39]
+set_location_assignment PIN_N19 -to o_hex[40]
+set_location_assignment PIN_N20 -to o_hex[41]
+set_location_assignment PIN_P11 -to i_clk
+set_global_assignment -name VHDL_FILE ../rtl/alu_control_unit.vhd
+set_global_assignment -name VHDL_FILE ../rtl/data_mem.vhd
+set_global_assignment -name VHDL_FILE ../rtl/control_unit.vhd
+set_global_assignment -name VHDL_FILE ../rtl/sign_extend.vhd
+set_global_assignment -name VHDL_FILE ../rtl/instruction_mem.vhd
+set_global_assignment -name VHDL_FILE ../rtl/register_file.vhd
+set_global_assignment -name SDC_FILE ../clock.sdc
+set_global_assignment -name VHDL_FILE ../rtl/instruction_ptr.vhd
+set_global_assignment -name VHDL_FILE ../rtl/alu.vhd
+set_global_assignment -name VHDL_FILE ../rtl/ripple_adder.vhd
+set_global_assignment -name VHDL_FILE ../rtl/full_adder.vhd
+set_global_assignment -name VHDL_FILE ../rtl/binary_to_bcd.vhd
+set_global_assignment -name VHDL_FILE ../rtl/top.vhd
+set_global_assignment -name VHDL_FILE ../rtl/seven_seg_decoder.vhd
+set_global_assignment -name HEX_FILE ../machinecode.hex
+set_global_assignment -name MIF_FILE ../other.mif
+set_global_assignment -name ENABLE_OCT_DONE ON
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_location_assignment PIN_B8 -to i_button
+set_location_assignment PIN_A7 -to i_rst
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
