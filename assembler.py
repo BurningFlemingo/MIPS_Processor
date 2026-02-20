@@ -19,37 +19,73 @@ class InstructionInfo(NamedTuple):
     constants: dict[str, str]
 
 C_INSTRUCTION_MAP: dict[str, InstructionInfo] = {
-            "addi": InstructionInfo(
-                type=InstructionType.I,
-                opcode="001000", 
-                operands=["rt","rs", "imm"],
-                constants={}
-            ),
-            "add": InstructionInfo(
-                type=InstructionType.R,
-                opcode="000000", 
-                operands=["rd", "rs", "rt"],
-                constants={"shamt": "00000", "funct": "100000"}
-            ),
-            "sll": InstructionInfo(
-                type=InstructionType.R,
-                opcode="000000",
-                operands=["rd", "rt", "shamt"],
-                constants={"rs":"00000", "funct": "000000"}
-            ),
-            "lw": InstructionInfo(
-                type=InstructionType.I,
-                opcode="100011",
-                operands=["rt", "imm", "rs"],
-                constants={}
-            ),
-            "j": InstructionInfo(
-                type=InstructionType.J,
-                opcode="000010",
-                operands=["addr"],
-                constants={}
-            ),
-        }
+    "addi": InstructionInfo(
+        type=InstructionType.I,
+        opcode="001000",
+        operands=["rt", "rs", "imm"],
+        constants={}
+    ),
+    "add": InstructionInfo(
+        type=InstructionType.R,
+        opcode="000000",
+        operands=["rd", "rs", "rt"],
+        constants={"shamt": "00000", "funct": "100000"}
+    ),
+    "sub": InstructionInfo(
+        type=InstructionType.R,
+        opcode="000000",
+        operands=["rd", "rs", "rt"],
+        constants={"shamt": "00000", "funct": "100010"}
+    ),
+    "and": InstructionInfo(
+        type=InstructionType.R,
+        opcode="000000",
+        operands=["rd", "rs", "rt"],
+        constants={"shamt": "00000", "funct": "100100"}
+    ),
+    "or": InstructionInfo(
+        type=InstructionType.R,
+        opcode="000000",
+        operands=["rd", "rs", "rt"],
+        constants={"shamt": "00000", "funct": "100101"}
+    ),
+    "slt": InstructionInfo(
+        type=InstructionType.R,
+        opcode="000000",
+        operands=["rd", "rs", "rt"],
+        constants={"shamt": "00000", "funct": "101010"}
+    ),
+    "lw": InstructionInfo(
+        type=InstructionType.I,
+        opcode="100011",
+        operands=["rt", "imm", "rs"],
+        constants={}
+    ),
+    "sw": InstructionInfo(
+        type=InstructionType.I,
+        opcode="101011",
+        operands=["rt", "imm", "rs"],
+        constants={}
+    ),
+    "beq": InstructionInfo(
+        type=InstructionType.I,
+        opcode="000100",
+        operands=["rs", "rt", "imm"],
+        constants={}
+    ),
+    "sll": InstructionInfo(
+        type=InstructionType.R,
+        opcode="000000",
+        operands=["rd", "rt", "shamt"],
+        constants={"rs": "00000", "funct": "000000"}
+    ),
+    "j": InstructionInfo(
+        type=InstructionType.J,
+        opcode="000010",
+        operands=["addr"],
+        constants={}
+    ),
+}
 
 
 g_SymbolTable: dict[str, int] = {}

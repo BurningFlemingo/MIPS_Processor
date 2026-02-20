@@ -36,5 +36,7 @@ begin
 			wait for 10 ns;
 		end loop;
 
+		wait;
+
 	end process stim_proc;
 end architecture tb;

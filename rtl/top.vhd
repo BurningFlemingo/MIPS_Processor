@@ -44,19 +44,19 @@ architecture rtl of top is
 
 	signal s_alu_control : std_logic_vector(3 downto 0);
 
-	-- signal s_pc_bcd_ones : std_logic_vector(3 downto 0);
-	-- signal s_pc_bcd_tens : std_logic_vector(3 downto 0);
+	signal s_pc_bcd_ones : std_logic_vector(3 downto 0);
+	signal s_pc_bcd_tens : std_logic_vector(3 downto 0);
 
 	-- signal s_wb_bcd_ones : std_logic_vector(3 downto 0);
 	-- signal s_wb_bcd_tens : std_logic_vector(3 downto 0);
 begin
 
-	-- bcd_digits_inst1: entity work.binary_to_bcd 
-	-- port map (
-	-- 	i_binary => s_pc(3 downto 0),
-	-- 	o_ones => s_pc_bcd_ones, 
-	-- 	o_tens => s_pc_bcd_tens
-	-- );
+	bcd_digits_inst1: entity work.binary_to_bcd 
+	port map (
+		i_binary => s_pc(15 downto 0),
+		o_ones => s_pc_bcd_ones, 
+		o_tens => s_pc_bcd_tens
+	);
 	-- bcd_digits_inst2: entity work.binary_to_bcd 
 	-- port map (
 	-- 	i_binary => s_wb_result(3 downto 0),

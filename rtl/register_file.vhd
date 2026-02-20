@@ -37,7 +37,11 @@ begin
 			end if;
 		end if;
 	end process;
-	
-	 o_read1_data <= r_register_file(to_integer(unsigned(i_read1_addr)));
-	 o_read2_data <= r_register_file(to_integer(unsigned(i_read2_addr)));
+
+	with i_read1_addr select 
+		o_read1_data <= (31 downto 0 => '0') when "00000", 
+						r_register_file(to_integer(unsigned(i_read1_addr))) when others;
+	with i_read2_addr select 
+		o_read2_data <= (31 downto 0 => '0') when "00000", 
+						r_register_file(to_integer(unsigned(i_read2_addr))) when others;
 end architecture rtl;
