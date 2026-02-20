@@ -1,0 +1,21 @@
+# What standard to use. This is optional and defaults to VHDL 2008.
+standard = "2008"
+# The preferred case for completions.
+preferred_case = "lower"
+
+[libraries]
+
+# Wildcards and exclude patterns are supported
+lib3.files = [
+    '**/*.vhd',
+    'tb/*.vhd',
+    'rtl/*.vhd',
+]
+lib3.exclude = [
+    'rtl/*_old.vhd',
+]
+
+[lint]
+unused = 'error' # Upgrade the 'unused' diagnostic to the 'error' severity
+
+unnecessary_work_library = false # Disable linting for the 'library work;' statement
