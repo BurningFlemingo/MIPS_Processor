@@ -1,4 +1,6 @@
 quartus/*
-quartus/
+quartus
+!quartus/*.qpf
+!quartus/*.qsf
 sim/*
 sim
