@@ -24,7 +24,7 @@ begin
 					 not i_opcode(2) when others;
 	with i_opcode select
 		o_mem_to_reg <= '1' when "100011",
-					 '0' when others;
+	 			 '0' when others;
 	with i_opcode select
 		o_reg_dst <= '1' when "000000",
 					 '0' when others;
