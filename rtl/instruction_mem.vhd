@@ -11,7 +11,14 @@ end entity instruction_mem;
 
 architecture rtl of instruction_mem is 
 	type t_mem is array (0 to 1023) of std_logic_vector(7 downto 0);
-	signal s_data : t_mem := (x"20", x"0b", x"00", x"05", x"20", x"0a", x"00", x"02", x"01", x"6a", x"00", x"19", x"00", x"00", x"48", x"10", x"00", x"00", x"50", x"10",
+	signal s_data : t_mem := (x"20", x"0b", x"00", x"05",
+x"20", x"0a", x"00", x"02",
+x"00", x"0a", x"60", x"40",
+x"01", x"4c", x"08", x"2a",
+x"14", x"20", x"00", x"01",
+x"01", x"6c", x"00", x"19",
+x"00", x"00", x"48", x"10",
+x"00", x"00", x"50", x"10",
 							  others => x"00"
 							);
 begin 

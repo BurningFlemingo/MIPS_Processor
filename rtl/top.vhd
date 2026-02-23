@@ -26,6 +26,7 @@ architecture rtl of top is
 	signal s_mem_write : std_logic; 
 	signal s_mem_read : std_logic; 
 	signal s_branch : std_logic; 
+	signal s_invert_zero : std_logic; 
 	signal s_alu_shift : std_logic; 
 	signal s_hilo_write : std_logic; 
 	signal s_hilo_to_reg : std_logic; 
@@ -99,7 +100,7 @@ begin
 	-- 	o_seg => o_hex(27 downto 21)
 	-- );
 
-	s_pc_src <= s_alu_zero and s_branch;
+	s_pc_src <= s_branch and (s_alu_zero xor s_invert_zero);
 
 	instruction_ptr_inst: entity work.instruction_ptr
 	 port map(
@@ -134,6 +135,7 @@ begin
 	    o_mem_write => s_mem_write,
 	    o_mem_read => s_mem_read,
 	    o_branch => s_branch,
+		o_invert_zero => s_invert_zero,
 		o_alu_shift => s_alu_shift,
 		o_hilo_write => s_hilo_write, 
 		o_hilo_to_reg => s_hilo_to_reg,

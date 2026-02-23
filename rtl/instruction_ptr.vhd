@@ -33,7 +33,7 @@ begin
 			o_overflowed => open 
 	);
 
-	s_shifted_imm <= i_extended_imm(31 downto 2) & "00";
+	s_shifted_imm <= i_extended_imm(29 downto 0) & "00";
 
 	branch_adder_inst : entity work.ripple_adder
 	generic map (

@@ -14,6 +14,7 @@ entity control_unit is
 		o_mem_write : out std_logic; 
 		o_mem_read : out std_logic; 
 		o_branch : out std_logic;
+		o_invert_zero : out std_logic;
 		o_alu_shift : out std_logic;
 		o_hilo_write : out std_logic; 
 		o_hilo_to_reg : out std_logic;
@@ -26,6 +27,8 @@ architecture rtl of control_unit is
 	constant c_r_type : std_logic_vector(5 downto 0) := "000000";
 	
 	constant c_beq_op : std_logic_vector(5 downto 0) := "000100";
+	constant c_bne_op : std_logic_vector(5 downto 0) := "000101";
+	
 	constant c_lw_op : std_logic_vector(5 downto 0) := "100011";
 	constant c_sw_op : std_logic_vector(5 downto 0) := "101011";
 	constant c_addi_op : std_logic_vector(5 downto 0) := "001000";
@@ -67,7 +70,7 @@ begin
 							  '0' when others;
 
 	with i_opcode select
-		o_alu_src <= '0' when c_r_type | c_beq_op, 
+		o_alu_src <= '0' when c_r_type | c_beq_op | c_bne_op,
 					 '1' when others;
 	with i_opcode select
 		o_mem_to_reg <= '1' when c_lw_op,
@@ -87,11 +90,15 @@ begin
 
 	with i_opcode select
 		o_alu_op <= c_alu_funct when c_r_type, 
-					c_alu_sub when c_beq_op, 
+					c_alu_sub when c_beq_op | c_bne_op,
 					c_alu_add when others;
 	
 	with i_opcode select 
-		o_branch <= '1' when c_beq_op, 
+		o_branch <= '1' when c_beq_op | c_bne_op,
+					'0' when others;				 
+	
+	with i_opcode select 
+		o_invert_zero <= '1' when c_bne_op, 
 					'0' when others;				 
 
 	with i_opcode select
