@@ -61,8 +61,6 @@ begin
 			& "Expected: " & integer'image(to_integer(unsigned(c_test_cases(i).o_expected))) & LF
 			& "Got: " & integer'image(to_integer(unsigned(s_result)))
 			severity error;
-			
-			s_opcode <= c_test_cases(i).i_opcode;
 		end loop;
 
 		report "All tests completed :D";

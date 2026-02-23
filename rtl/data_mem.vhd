@@ -17,7 +17,7 @@ entity data_mem is
 end entity data_mem;
 
 architecture rtl of data_mem is 
-	type t_mem is array (0 to 255) of std_logic_vector(7 downto 0);
+	type t_mem is array (0 to 1023) of std_logic_vector(7 downto 0);
 	signal s_data : t_mem := (others => x"00");
 begin 
 

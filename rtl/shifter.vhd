@@ -23,7 +23,7 @@ architecture rtl of shifter is
 	
 	constant c_sll_op : std_logic_vector(1 downto 0) := "00";
 	constant c_srl_op : std_logic_vector(1 downto 0) := "01";
-	constant c_sra_op : std_logic_vector(1 downto 0) := "11";
+	constant c_sra_op : std_logic_vector(1 downto 0) := "10";
 	
 	signal s_sll : t_array;
 	signal s_srl : t_array;

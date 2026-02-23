@@ -26,9 +26,9 @@ begin
 		g_input_size => 32
 	)
 	port map (
+			i_opcode => '0',
 			i_lhs => r_pc,
 			i_rhs => (31 downto 3 => '0') & "100",
-			i_carry_in => '0',
 			o_sum => s_next_instruction_addr,
 			o_overflowed => open 
 	);
@@ -40,9 +40,9 @@ begin
 		g_input_size => 32
 	)
 	port map (
+			i_opcode => '0',
 			i_lhs => s_next_instruction_addr,
 			i_rhs => s_shifted_imm,
-			i_carry_in => '0',
 			o_sum => s_branch_addr,
 			o_overflowed => open 
 	);
