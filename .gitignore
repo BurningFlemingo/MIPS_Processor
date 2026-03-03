@@ -3,3 +3,5 @@ quartus/*
 !quartus/*.qsf
 sim/*
 sim
+rtl/transcipt
+testbench/transcipt

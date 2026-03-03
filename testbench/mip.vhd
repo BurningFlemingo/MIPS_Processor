@@ -5,23 +5,29 @@ entity top_tb is
 end entity top_tb; 
 
 architecture tb of top_tb is 
-	signal r_clk : std_logic := '0';
-	signal r_rst : std_logic := '1';
+		signal s_clk : std_logic;
+		signal s_rst : std_logic;
+		signal s_switches : std_logic_vector(9 downto 0);
+		signal s_seg : std_logic_vector(34 downto 0);
+
 begin
+	s_switches <= "0000000010";
 
 	top_inst: entity work.top
 	 port map(
-	    i_clk => r_clk,
-	    i_rst => r_rst
+	    i_clk => s_clk,
+	    i_rst => s_rst, 
+		i_switches => s_switches, 
+		o_seg => s_seg
 	);
 
 	reset_proc: process
 	begin
-		r_rst <= '0';
+		s_rst <= '1';
 		wait for 30 ns;
-		r_rst <= '1';
+		s_rst <= '0';
 		wait for 30 ns;
-		r_rst <= '0';
+		s_rst <= '1';
 		wait;
 	end process reset_proc;
 	
@@ -29,10 +35,10 @@ begin
 	begin
 
 		for i in 0 to 100 loop
-			r_clk <= '1';
+			s_clk <= '1';
 			wait for 10 ns;
 
-			r_clk <= '0';
+			s_clk <= '0';
 			wait for 10 ns;
 		end loop;
 

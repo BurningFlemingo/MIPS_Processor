@@ -106,7 +106,7 @@ begin
 	
 	o_result <= s_result_hw & s_result_lw;
 	
-	o_zero <= '1' when s_result_lw = (61 downto 0 => '0') else '0';
+	o_zero <= '1' when s_result_lw = (31 downto 0 => '0') else '0';
 	
 		
 end architecture rtl;

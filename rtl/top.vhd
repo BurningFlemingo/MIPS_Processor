@@ -4,13 +4,16 @@ use ieee.std_logic_1164.all;
 entity top is
 	port (
 		i_clk : in std_logic;
-		i_rst : in std_logic
-		-- i_button : in std_logic;
-		-- o_hex : out std_logic_vector(27 downto 0)
+		i_rst : in std_logic;
+		i_switches : in std_logic_vector(9 downto 0);
+		o_seg : out std_logic_vector(34 downto 0)
 	);
 end entity top;
 
 architecture rtl of top is 
+	signal s_fixed_rst : std_logic;
+	signal s_seven_seg_data : std_logic_vector(15 downto 0);
+
 	signal s_pc : std_logic_vector(31 downto 0);
 	
 	signal s_instruction : std_logic_vector(31 downto 0);
@@ -52,60 +55,27 @@ architecture rtl of top is
 
 	signal s_alu_control : std_logic_vector(3 downto 0);
 
-	signal s_pc_bcd_ones : std_logic_vector(3 downto 0);
-	signal s_pc_bcd_tens : std_logic_vector(3 downto 0);
-	
 	signal s_hilo_word_data : std_logic_vector(31 downto 0);
 
 	signal r_hilo : std_logic_vector(63 downto 0);
 
-	-- signal s_wb_bcd_ones : std_logic_vector(3 downto 0);
-	-- signal s_wb_bcd_tens : std_logic_vector(3 downto 0);
+	type t_line_arr is array (0 to 639) of std_logic_vector(3 downto 0);
+	type t_image_arr is array (0 to 479) of t_line_arr;
+	
+	-- constant c_image : t_image_arr := ( others => (others => "1000"));
+	-- 
+	-- signal s_vga_x : integer;
+	-- signal s_vga_y : integer;
+
 begin
-
-	bcd_digits_inst1: entity work.binary_to_bcd 
-	port map (
-		i_binary => s_pc(15 downto 0),
-		o_ones => s_pc_bcd_ones, 
-		o_tens => s_pc_bcd_tens
-	);
-	-- bcd_digits_inst2: entity work.binary_to_bcd 
-	-- port map (
-	-- 	i_binary => s_wb_result(3 downto 0),
-	-- 	o_ones => s_wb_bcd_ones, 
-	-- 	o_tens => s_wb_bcd_tens
-	-- );
-
-	-- seg_inst1: entity work.seven_seg_decoder 
-	-- port map (
-	-- 	i_bcd => s_pc_bcd_ones,
-	-- 	o_seg => o_hex(6 downto 0)
-	-- );
-
-	-- seg_inst2: entity work.seven_seg_decoder 
-	-- port map (
-	-- 	i_bcd => s_pc_bcd_tens,
-	-- 	o_seg => o_hex(13 downto 7)
-	-- );
-
-	-- seg_inst3: entity work.seven_seg_decoder 
-	-- port map (
-	-- 	i_bcd => s_wb_bcd_ones,
-	-- 	o_seg => o_hex(20 downto 14)
-	-- );
-
-	-- seg_inst4: entity work.seven_seg_decoder 
-	-- port map (
-	-- 	i_bcd => s_wb_bcd_tens,
-	-- 	o_seg => o_hex(27 downto 21)
-	-- );
+	s_fixed_rst <= not i_rst;
 
 	s_pc_src <= s_branch and (s_alu_zero xor s_invert_zero);
 
 	instruction_ptr_inst: entity work.instruction_ptr
 	 port map(
 	    i_clk => i_clk,
-		i_rst => i_rst,
+		i_rst => s_fixed_rst,
 		i_pc_src => s_pc_src,
 		i_extended_imm => s_extended_imm,
 	    o_addr => s_pc
@@ -155,7 +125,7 @@ begin
 	reg_file_inst: entity work.reg_file
 	 port map(
 	    i_clk => i_clk,
-		i_rst => i_rst,
+		i_rst => s_fixed_rst,
 	    i_read1_addr => s_instruction(25 downto 21),
 	    i_read2_addr => s_instruction(20 downto 16),
 	    i_write_addr => s_reg_file_write_addr,
@@ -191,14 +161,26 @@ begin
 		o_zero => s_alu_zero
 	);
 
-	data_mem: entity work.data_mem
+	data_mem: entity work.mem_bus
 		port map (
 			i_clk => i_clk,
+			
 			i_mem_write => s_mem_write, 
 			i_mem_read => s_mem_read,
+			
 			i_addr => s_alu_result(31 downto 0),
 			i_data => s_reg_file_read2_data,
-			o_data => s_mem_read_data 
+			
+			i_switches => i_switches, 
+			
+			o_data => s_mem_read_data,
+			o_seven_seg => s_seven_seg_data
+		);
+
+		seven_seg_controller_inst: entity work.seven_seg_controller 
+			port map(
+				i_data => s_seven_seg_data, 
+				o_seg => o_seg
 		);
 
 		
@@ -210,7 +192,9 @@ begin
 
 	hilo_write_proc: process(i_clk) 
 	begin
-		if rising_edge(i_clk) then 
+		if s_fixed_rst = '1' then 
+			r_hilo <= (others => '0');
+		elsif rising_edge(i_clk) then 
 			if s_hilo_write = '1' then 
 				r_hilo <= s_alu_result;
 			end if;
