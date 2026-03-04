@@ -7,18 +7,18 @@ entity control_unit is
 		i_funct : in std_logic_vector(5 downto 0); 
 	
 		o_alu_op : out std_logic_vector(1 downto 0);
-		o_alu_src : out std_logic;
-		o_mem_to_reg : out std_logic;
-		o_reg_dst : out std_logic; 
-		o_reg_write : out std_logic; 
-		o_mem_write : out std_logic; 
-		o_mem_read : out std_logic; 
-		o_branch : out std_logic;
-		o_invert_zero : out std_logic;
-		o_alu_shift : out std_logic;
-		o_hilo_write : out std_logic; 
-		o_hilo_to_reg : out std_logic;
-		o_hilo_word_select : out std_logic
+		o_alu_src_op : out std_logic;
+		o_mem_to_reg_op : out std_logic;
+		o_reg_dst_op : out std_logic; 
+		o_reg_write_op : out std_logic; 
+		o_mem_write_op : out std_logic; 
+		o_mem_read_op : out std_logic; 
+		o_branch_op : out std_logic;
+		o_invert_zero_op : out std_logic;
+		o_alu_shift_op : out std_logic;
+		o_hilo_write_op : out std_logic; 
+		o_hilo_to_reg_op : out std_logic;
+		o_hilo_word_select_op : out std_logic
 	);
 end entity control_unit;
 
@@ -65,27 +65,27 @@ begin
 						'0' when others;
 
 	with i_funct select 
-		o_hilo_word_select <= '0' when c_mflo_funct, 
+		o_hilo_word_select_op <= '0' when c_mflo_funct, 
 							  '1' when c_mfhi_funct, 
 							  '0' when others;
 
 	with i_opcode select
-		o_alu_src <= '0' when c_r_type | c_beq_op | c_bne_op,
+		o_alu_src_op <= '0' when c_r_type | c_beq_op | c_bne_op,
 					 '1' when others;
 	with i_opcode select
-		o_mem_to_reg <= '1' when c_lw_op,
+		o_mem_to_reg_op <= '1' when c_lw_op,
 	 			 '0' when others;
 	with i_opcode select
-		o_reg_dst <= '1' when c_r_type,
+		o_reg_dst_op <= '1' when c_r_type,
 					 '0' when others;
 	with i_opcode select
-		o_reg_write <= '1' when c_r_type | c_addi_op | c_lw_op,
+		o_reg_write_op <= '1' when c_r_type | c_addi_op | c_lw_op,
 					 '0' when others;
 	with i_opcode select
-		o_mem_write <= '1' when c_sw_op,
+		o_mem_write_op <= '1' when c_sw_op,
 					 '0' when others;
 	with i_opcode select
-		o_mem_read <= '1' when c_lw_op,
+		o_mem_read_op <= '1' when c_lw_op,
 					 '0' when others;
 
 	with i_opcode select
@@ -94,22 +94,22 @@ begin
 					c_alu_add when others;
 	
 	with i_opcode select 
-		o_branch <= '1' when c_beq_op | c_bne_op,
+		o_branch_op <= '1' when c_beq_op | c_bne_op,
 					'0' when others;				 
 	
 	with i_opcode select 
-		o_invert_zero <= '1' when c_bne_op, 
+		o_invert_zero_op <= '1' when c_bne_op, 
 					'0' when others;				 
 
 	with i_opcode select
-		o_alu_shift <= s_funct_is_shift when c_r_type, 
+		o_alu_shift_op <= s_funct_is_shift when c_r_type, 
 					   '0' when others;
 	
 	with i_opcode select
-		o_hilo_write <= s_funct_is_hilo_write when c_r_type, 
+		o_hilo_write_op <= s_funct_is_hilo_write when c_r_type, 
 					   '0' when others;	
 	with i_opcode select
-		o_hilo_to_reg <= s_funct_is_hilo_to_reg when c_r_type, 
+		o_hilo_to_reg_op <= s_funct_is_hilo_to_reg when c_r_type, 
 					   '0' when others;
 		
 	
