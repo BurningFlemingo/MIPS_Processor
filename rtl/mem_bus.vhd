@@ -5,6 +5,7 @@ use ieee.numeric_std.all;
 entity mem_bus is 
 	port (
 		i_clk : in std_logic;
+		i_rst : in std_logic;
 	
 		i_mem_write : in std_logic;
 		i_mem_read : in std_logic;
@@ -47,9 +48,13 @@ architecture rtl of mem_bus is
 	signal s_ram_addr : std_logic_vector(14 downto 0);
 	
 	signal s_ram_data : std_logic_vector(31 downto 0);
-
 	signal s_addr_offset : integer;
+
+    signal r_seven_seg : std_logic_vector(15 downto 0);
+    signal r_switches : std_logic_vector(9 downto 0);
 begin 
+    o_seven_seg <= r_seven_seg;
+
 	s_word_addr <= i_addr(31 downto 2);
 
 	ram_inst: entity work.ram
@@ -93,27 +98,21 @@ begin
 
 	s_ram_addr <= std_logic_vector(to_unsigned(s_addr_offset, 15));
 
-	write_proc: process(i_clk) 
+	write_proc: process(i_clk, i_rst) 
 	begin 
-		if rising_edge(i_clk) then
-			if i_mem_write = '1' then 
-				if s_addr_seg_display = '1' then 
-					o_seven_seg(15 downto 0) <= i_data(15 downto 0);
-				end if;
-			elsif i_mem_read = '1' then 
-				if s_addr_main_mem = '1' or s_addr_framebuffer = '1' then 
-					o_data <= s_ram_data;
-				elsif s_addr_switches = '1' then 
-					o_data <= (31 downto 10 => '0') & i_switches;
-				else 
-					o_data <= (others => '0');
-				end if;
-			end if;
+        if i_rst = '1' then 
+		elsif rising_edge(i_clk) then
+            r_switches <= i_switches;
 
-				
-
+			if i_mem_write = '1' and s_addr_seg_display = '1' then 
+				r_seven_seg <= i_data(15 downto 0);
+            end if;
 		end if;
 	end process write_proc;
+
+    o_data <= s_ram_data when s_addr_main_mem = '1' or s_addr_framebuffer = '1' else 
+              (31 downto 10 => '0') & r_switches when s_addr_switches = '1' else 
+              (others => '0');
 
 
 end architecture rtl;

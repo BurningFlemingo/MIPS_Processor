@@ -1,6 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 package soft_rom is
-	type t_rom is array (0 to 255) of std_logic_vector(7 downto 0);
-	constant c_soft_rom : t_rom := (x"8c", x"09", x"00", x"04", x"20", x"0a", x"00", x"05", x"01", x"2a", x"00", x"19", x"00", x"00", x"48", x"12", x"ac", x"09", x"00", x"00", others => x"00");
+	type t_rom is array (0 to 2023) of std_logic_vector(7 downto 0);
+	constant c_soft_rom : t_rom := (x"8C", x"09", x"00", x"04", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"20", x"0A", x"00", x"05", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"01", x"2A", x"00", x"19", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00",x"00", x"00", x"00", x"48", x"12", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"AC", x"09", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", x"00", others => x"00");
 end package soft_rom;

@@ -12,6 +12,9 @@ end entity alu_control_unit;
 
 architecture rtl of alu_control_unit is
 	constant c_add_funct : std_logic_vector(5 downto 0) := "100000";
+	constant c_mflo_funct : std_logic_vector(5 downto 0) := "010010";
+	constant c_mfhi_funct : std_logic_vector(5 downto 0) := "010000";
+
 	constant c_sub_funct : std_logic_vector(5 downto 0) := "100010";
 	constant c_multu_funct : std_logic_vector(5 downto 0) := "011001";
 	
@@ -29,6 +32,9 @@ architecture rtl of alu_control_unit is
 begin
 	with i_funct(5 downto 0) select 
 		s_decoded_funct <= "0100" when c_add_funct,
+                           "0100" when c_mflo_funct,
+                           "0100" when c_mfhi_funct,
+
 						   "0101" when c_sub_funct,
 						   "0110" when c_multu_funct,
 						   "0111" when c_slt_func, 

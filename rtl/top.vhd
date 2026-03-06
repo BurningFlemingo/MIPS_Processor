@@ -421,6 +421,7 @@ begin
 	data_mem: entity work.mem_bus
 		port map (
 			i_clk => i_clk,
+            i_rst => s_rst,
 			
 			i_mem_write => r_exmem.mem_write_op, 
 			i_mem_read => r_exmem.mem_read_op,
