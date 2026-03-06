@@ -8,11 +8,8 @@ preferred_case = "lower"
 # Wildcards and exclude patterns are supported
 lib3.files = [
     '**/*.vhd',
-    'tb/*.vhd',
+    'testbench/*.vhd',
     'rtl/*.vhd',
-]
-lib3.exclude = [
-    'rtl/*_old.vhd',
 ]
 
 [lint]
